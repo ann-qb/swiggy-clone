@@ -1,81 +1,98 @@
 import styled from "styled-components";
 import burgerImage from "./../../assets/burger.jpg";
+import { increment, decrement } from "./../../actions";
 
 const Card = styled.div`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  margin: 4% 2%;
   padding: 10px;
-  ${"" /* margin: 20px 10px; */}
-  border: 1px solid #f4f4f4;
+  border: 1px solid #cdc8c8;
+  box-shadow: 10px 10px 20px 5px #f4f4f4;
   border-radius: 5px;
+  & > div {
+    padding: 5px;
+  }
 `;
 
-const ImgDiv = styled.div`
-  ${"" /* flex: 1 25%; */}
-`;
-const H3 = styled.h3`
-  margin: 0;
-`;
 const Img = styled.img`
-  height: 100px;
-  ${"" /* padding: 10px; */}
+  width: 100%;
+  display: none;
+  @media all and (min-width: 400px) {
+    display: block;
+  }
 `;
-const DetailsDiv = styled.div``;
 
-const ActionDiv = styled.div``;
+const DetailsDiv = styled.div`
+  & > h3,
+  p {
+    margin-top: 0;
+    margin-bottom: 3px;
+  }
+  & > p:last-child {
+    font-size: 85%;
+  }
+`;
+
 const Action = styled.div`
-  align-self: center;
+  background-color: #d4f2c4;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  display: flex;
+  width: min(55px);
+  justify-content: space-around;
+  &:hover {
+    background-color: #a4db87;
+  }
 `;
-// const Image = styled.img`
-// width: 50px;
-// height: 50px;
-// margin: 50px;
-// `;
 
-// const Title = styled.h3`
-
-// `;
-
-// const Price = styled.p`
-
-// `;
-
-// const Description = styled.p`
-
-// `;
+const Button = styled.button`
+  background-color: transparent;
+  padding: 5px;
+  border: none;
+  outline: none;
+`;
 
 export default function ItemCard(props) {
   const onPlus = (e) => {
-    console.log(e.target.id);
-    const id = e.target.id;
-    // props.setItem({ type: "INCREMENT", id });
+    const id = e.currentTarget.id;
+    props.setItem(increment(id));
+  };
+  const onMinus = (e) => {
+    const id = e.currentTarget.id;
+    props.setItem(decrement(id));
   };
   return (
     <Card>
-      <ImgDiv>
+      <div>
         <Img src={burgerImage} alt="Menu Item" />
-      </ImgDiv>
+      </div>
       <DetailsDiv>
-        <H3>{props.item.name}</H3>
+        <h3>{props.item.name}</h3>
         <p>Rs. {props.item.price}</p>
         <p>{props.item.description}</p>
       </DetailsDiv>
-      <ActionDiv>
+      <div>
         {props.item.quantity > 0 ? (
           <Action>
-            <button id={props.item.id}>-</button>
+            <Button id={props.item.id} onClick={onMinus}>
+              -
+            </Button>
             <span>{props.item.quantity}</span>
-            <button id={props.item.id} onClick={onPlus}>+</button>
+            <Button id={props.item.id} onClick={onPlus}>
+              +
+            </Button>
           </Action>
         ) : (
-          <Action>
-            <span>Add</span>
-            <button id={props.item.id} onClick={onPlus}>+</button>
+          <Action id={props.item.id} onClick={onPlus}>
+            <Button>
+              Add
+            </Button>
           </Action>
         )}
-        {console.log(props.item)}
-      </ActionDiv>
+      </div>
     </Card>
   );
 }
