@@ -12,12 +12,12 @@ const cartReducer = (state = itemList, action) => {
       });
     }
     case "DECREMENT": {
-        return state.map((each) => {
-          if (each.id === id) {
-            return { ...each, quantity: each.quantity - 1 };
-          }
-          return each;
-        });
+      return state.map((each) => {
+        if (each.id === id) {
+          return { ...each, quantity: each.quantity - 1 };
+        }
+        return each;
+      });
     }
     case "RESET":
       return itemList;

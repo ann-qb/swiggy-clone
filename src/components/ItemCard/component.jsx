@@ -1,6 +1,7 @@
+import { connect } from "react-redux";
 import styled from "styled-components";
 import burgerImage from "./../../assets/burger.jpg";
-import { increment, decrement } from "./../../actions";
+import { increment, decrement } from "./../../features/cart/cartSlice";
 
 const Card = styled.div`
   display: flex;
@@ -55,7 +56,7 @@ const Button = styled.button`
   outline: none;
 `;
 
-export default function ItemCard(props) {
+function ItemCard(props) {
   const onPlus = (e) => {
     const id = e.currentTarget.id;
     props.setItem(increment(id));
@@ -87,12 +88,13 @@ export default function ItemCard(props) {
           </Action>
         ) : (
           <Action id={props.item.id} onClick={onPlus}>
-            <Button>
-              Add
-            </Button>
+            <Button>Add</Button>
           </Action>
         )}
       </div>
     </Card>
   );
 }
+
+const mapDispatch = {increment, decrement};
+export default connect(null, mapDispatch)(ItemCard);
