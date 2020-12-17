@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { reset } from "./../../features/cart/cartSlice";
-import { useSelector, useDispatch } from "react-redux";
 
 const Div = styled.div`
   background-color: #f7c8ab;
@@ -27,20 +25,7 @@ const Button = styled.button`
 `;
 
 export default function CartSummary(props) {
-  const data = useSelector((state) => state);
-  const dispatch = useDispatch();
-  const numberOfItems = data.reduce(
-    (acc, each) => (each.quantity > 0 ? (acc += each.quantity) : acc),
-    0
-  );
-  const totalPrice = data.reduce(
-    (acc, each) =>
-      each.quantity > 0 ? (acc += each.price * each.quantity) : acc,
-    0
-  );
-  const onCheckOut = () => {
-    dispatch(reset());
-  };
+  const { numberOfItems, totalPrice, onCheckOut } = props;
   return (
     <>
       {numberOfItems > 0 ? (
