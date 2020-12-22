@@ -25,6 +25,8 @@ const cartSlice = createSlice({
     },
     reset(state) {
       state = { ...initialState };
+      // Does not work without this return statement. Why?
+      return state;
     },
   },
 });

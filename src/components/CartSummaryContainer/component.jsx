@@ -35,7 +35,7 @@ import { useSelector, useDispatch } from "react-redux";
 import CartSummary from "../CartSummary/component";
 
 export default function CartSummaryContainer(props) {
-  const data = useSelector((state) => state);
+  const { data } = useSelector((state) => state);
   const dispatch = useDispatch();
   const numberOfItems = data.reduce(
     (acc, each) => (each.quantity > 0 ? (acc += each.quantity) : acc),
@@ -50,6 +50,10 @@ export default function CartSummaryContainer(props) {
     dispatch(reset());
   };
   return (
-      <CartSummary numberOfItems={numberOfItems} totalPrice={totalPrice} onCheckOut={onCheckOut}/>
+    <CartSummary
+      numberOfItems={numberOfItems}
+      totalPrice={totalPrice}
+      onCheckOut={onCheckOut}
+    />
   );
 }
