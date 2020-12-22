@@ -1,30 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
 import itemList from "./../../data";
 
+const initialState = { data: itemList };
+
 const cartSlice = createSlice({
   name: "updateCart",
-  initialState: itemList,
+  initialState,
   reducers: {
     increment(state, action) {
       const id = parseInt(action.payload);
-      return state.map((each) => {
+      state.data.forEach((each) => {
         if (each.id === id) {
-          return { ...each, quantity: each.quantity + 1 };
+          each.quantity += 1;
         }
-        return each;
       });
     },
     decrement(state, action) {
       const id = parseInt(action.payload);
-      return state.map((each) => {
+      state.data.forEach((each) => {
         if (each.id === id) {
-          return { ...each, quantity: each.quantity - 1 };
+          each.quantity -= 1;
         }
-        return each;
       });
     },
-    reset(state, action) {
-      return itemList;
+    reset(state) {
+      state = { ...initialState };
     },
   },
 });
