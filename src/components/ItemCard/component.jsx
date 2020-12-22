@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import burgerImage from "./../../assets/burger.jpg";
-import { increment, decrement } from "./../../actions";
+import { increment, decrement } from "./../../features/cart/cartSlice";
 
 const Card = styled.div`
   display: flex;
@@ -87,9 +87,7 @@ export default function ItemCard(props) {
           </Action>
         ) : (
           <Action id={props.item.id} onClick={onPlus}>
-            <Button>
-              Add
-            </Button>
+            <Button>Add</Button>
           </Action>
         )}
       </div>

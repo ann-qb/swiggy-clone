@@ -1,10 +1,8 @@
-import './App.css';
-import RestaurantItems from './components/RestaurantItems';
+import "./App.css";
+import RestaurantItems from "./components/RestaurantItems";
 
 function App() {
-  return (
-      <RestaurantItems/>
-  );
+  return <RestaurantItems />;
 }
 
 export default App;

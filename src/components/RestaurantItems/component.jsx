@@ -1,5 +1,5 @@
 import ItemsList from "./../ItemsList";
-import CartSummary from "./../CartSummary";
+import CartSummaryContainer from "../CartSummaryContainer/component";
 import styled from "styled-components";
 
 const Div = styled.div`
@@ -11,7 +11,7 @@ export default function RestaurantItems() {
   return (
     <Div>
         <ItemsList />
-        <CartSummary />
+        <CartSummaryContainer />
     </Div>
   );
 }
