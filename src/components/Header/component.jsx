@@ -13,6 +13,10 @@ const Div = styled.div`
   border-radius: 4px;
 `;
 
+const H2 = styled.h2`
+margin: 0;
+`;
+
 const Button = styled.button`
   padding: 10px;
   background-color: #9947bc;
@@ -24,23 +28,13 @@ const Button = styled.button`
   }
 `;
 
-export default function CartSummary(props) {
-  const { numberOfItems, totalPrice, onCheckOut } = props;
+export default function Header() {
   return (
     <>
-      {numberOfItems > 0 ? (
-        <Div>
-          <div>
-            <span>
-              {numberOfItems}
-              {numberOfItems > 1 ? " items" : " item"} | Rs. {totalPrice}
-            </span>
-          </div>
-          <div>
-            <Button onClick={onCheckOut}>CHECK OUT</Button>
-          </div>
-        </Div>
-      ) : null}
+      <Div>
+        <H2>Swiggy Clone</H2>
+        <Button>Login</Button>
+      </Div>
     </>
   );
 }
