@@ -33,9 +33,10 @@
 import { reset } from "../../../slices/cart.slice";
 import { useSelector, useDispatch } from "react-redux";
 import CartSummary from "./CartSummary/component";
+import { addOrder } from "../../../slices/orderlist.slice";
 
 export default function CartSummaryContainer(props) {
-  const { data } = useSelector((state) => state);
+  const { data } = useSelector((state) => state.cartSlice);
   const dispatch = useDispatch();
   const numberOfItems = data.reduce(
     (acc, each) => (each.quantity > 0 ? (acc += each.quantity) : acc),
@@ -46,13 +47,20 @@ export default function CartSummaryContainer(props) {
       each.quantity > 0 ? (acc += each.price * each.quantity) : acc,
     0
   );
-  const onCheckOut = () => {
+  const onReset = () => {
     dispatch(reset());
+  };
+  const onCheckOut = () => {
+    const cartItems = data.filter(each => each.quantity > 0);
+    dispatch(addOrder({cartItems}));
+    // onReset();
+    // Since the itemlist component is reloading, it automatically resets the state and hence the cart.
   };
   return (
     <CartSummary
       numberOfItems={numberOfItems}
       totalPrice={totalPrice}
+      onReset={onReset}
       onCheckOut={onCheckOut}
     />
   );

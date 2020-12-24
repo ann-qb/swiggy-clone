@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -37,11 +38,12 @@ const Button = styled.button`
   }
 `;
 
-export default function OrderList(props) {
-  const orderList = [
-    { orderId: 1, orderStatus: "Processing" },
-    { orderId: 2, orderStatus: "Processing" },
-  ];
+export default function OrderList() {
+  const { orderList } = useSelector((state) => state.orderListSlice);
+  // const orderList = [
+  //   { orderId: 1, orderStatus: "Processing" },
+  //   { orderId: 2, orderStatus: "Processing" },
+  // ];
   return (
     <>
       {orderList.length > 0 ? (
@@ -50,11 +52,16 @@ export default function OrderList(props) {
             <OrderDiv key={each.orderId}>
               <div>
                 <span>
-                  Order {each.orderId} | {each.orderStatus === 'Success' ? 'Your order has been delivered successfully!': 'Your order is being processed.'}
+                  Order #{each.orderId} |{" "}
+                  {each.orderStatus === "Success"
+                    ? "Your order has been delivered successfully!"
+                    : "Your order will be delivered soon!"}
                 </span>
               </div>
               <div>
-                <Link to='/order/:id'><Button>VIEW ORDER</Button></Link>
+                <Link to="/order/:id">
+                  <Button>VIEW ORDER</Button>
+                </Link>
               </div>
             </OrderDiv>
           ))}

@@ -26,7 +26,7 @@ const Button = styled.button`
 `;
 
 export default function CartSummary(props) {
-  const { numberOfItems, totalPrice, onCheckOut } = props;
+  const { numberOfItems, totalPrice, onReset, onCheckOut } = props;
   return (
     <>
       {numberOfItems > 0 ? (
@@ -38,9 +38,9 @@ export default function CartSummary(props) {
             </span>
           </div>
           <div>
-            <Button onClick={onCheckOut}>RESET</Button>
+            <Button onClick={onReset}>RESET</Button>
             {" "}
-            <Link to='/order/:id'><Button>CHECK OUT</Button></Link>
+            <Link to='/order/:id'><Button onClick={onCheckOut}>CHECK OUT</Button></Link>
           </div>
         </Div>
       ) : null}
