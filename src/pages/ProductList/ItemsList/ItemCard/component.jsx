@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import burgerImage from "./../../assets/burger.jpg";
-import { increment, decrement } from "./../../features/cart/cartSlice";
+import burgerImage from "../../../../assets/burger.jpg";
+import { increment, decrement } from "../../../../slices/cart.slice";
 
 const Card = styled.div`
   display: flex;

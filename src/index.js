@@ -6,14 +6,13 @@ import reportWebVitals from "./reportWebVitals";
 
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
-import cartReducer from "./features/cart/cartSlice";
+import cartReducer from "./slices/cart.slice";
 
 const store = configureStore({ reducer: cartReducer });
 
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-    {/* {console.log(cartSlice)} */}
       <App />
     </React.StrictMode>
   </Provider>,

@@ -30,9 +30,9 @@
 // )(CartSummary);
 // export default CartSummaryContainer;
 
-import { reset } from "./../../features/cart/cartSlice";
+import { reset } from "../../../slices/cart.slice";
 import { useSelector, useDispatch } from "react-redux";
-import CartSummary from "../CartSummary/component";
+import CartSummary from "./CartSummary/component";
 
 export default function CartSummaryContainer(props) {
   const { data } = useSelector((state) => state);

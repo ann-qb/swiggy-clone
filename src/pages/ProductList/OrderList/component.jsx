@@ -54,7 +54,7 @@ export default function OrderList(props) {
                 </span>
               </div>
               <div>
-                <Link to='/home/order/:id'><Button>VIEW ORDER</Button></Link>
+                <Link to='/order/:id'><Button>VIEW ORDER</Button></Link>
               </div>
             </OrderDiv>
           ))}

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Div = styled.div`
   background-color: #f7c8ab;
@@ -37,7 +38,9 @@ export default function CartSummary(props) {
             </span>
           </div>
           <div>
-            <Button onClick={onCheckOut}>CHECK OUT</Button>
+            <Button onClick={onCheckOut}>RESET</Button>
+            {" "}
+            <Link to='/order/:id'><Button>CHECK OUT</Button></Link>
           </div>
         </Div>
       ) : null}

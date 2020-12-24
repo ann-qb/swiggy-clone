@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Header from "../../components/Header";
 
 const Div = styled.div`
   background-color: #f7c8ab;
@@ -27,14 +28,14 @@ const Button = styled.button`
 
 export default function OrderDetails(props) {
   return (
-    <>
       <Div>
         <h2>Your order has been placed successfully!</h2>
         <h3>Sit back and relax!</h3>
         <h4>Your order will be delivered in 30 seconds.</h4>
         {/* Is this ok to put another component inside link? */}
-        <Link to='/home'><Button>Back</Button></Link>
+        <Link to="/productlist">
+          <Button>Back</Button>
+        </Link>
       </Div>
-    </>
   );
 }
