@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Header from "../../components/Header";
 
 const Div = styled.div`
   background-color: #f7c8ab;
