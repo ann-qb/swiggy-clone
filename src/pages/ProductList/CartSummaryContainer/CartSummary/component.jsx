@@ -13,8 +13,16 @@ const Div = styled.div`
   border-radius: 4px;
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  flex: 1 1;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+`;
+
 const Button = styled.button`
   padding: 10px;
+  margin: 4px 2px;
   background-color: #9947bc;
   color: #ffffff;
   border: none;
@@ -25,7 +33,7 @@ const Button = styled.button`
 `;
 
 export default function CartSummary(props) {
-  const { numberOfItems, totalPrice, onCheckOut } = props;
+  const { numberOfItems, totalPrice, onReset, onCheckOut } = props;
   return (
     <>
       {numberOfItems > 0 ? (
@@ -36,9 +44,10 @@ export default function CartSummary(props) {
               {numberOfItems > 1 ? " items" : " item"} | Rs. {totalPrice}
             </span>
           </div>
-          <div>
-            <Button onClick={onCheckOut}>VIEW CART</Button>
-          </div>
+          <ButtonContainer>
+            <Button onClick={onReset}>RESET</Button>{" "}
+            <Button onClick={onCheckOut}>CHECK OUT</Button>
+          </ButtonContainer>
         </Div>
       ) : null}
     </>

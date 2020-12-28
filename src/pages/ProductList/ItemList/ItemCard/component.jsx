@@ -1,6 +1,7 @@
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-import burgerImage from "./../../assets/burger.jpg";
-import { increment, decrement } from "./../../features/cart/cartSlice";
+import burgerImage from "../../../../assets/burger.jpg";
+import { increment, decrement } from "../../../../slices/cart.slice";
 
 const Card = styled.div`
   display: flex;
@@ -56,9 +57,14 @@ const Button = styled.button`
 `;
 
 export default function ItemCard(props) {
+  const { loggedIn } = useSelector((state) => state.loginSlice);
   const onPlus = (e) => {
-    const id = e.currentTarget.id;
-    props.setItem(increment(id));
+    if (loggedIn) {
+      const id = e.currentTarget.id;
+      props.setItem(increment(id));
+    } else {
+      alert("You need to be logged in to add items to cart!");
+    }
   };
   const onMinus = (e) => {
     const id = e.currentTarget.id;
@@ -75,7 +81,7 @@ export default function ItemCard(props) {
         <p>{props.item.description}</p>
       </DetailsDiv>
       <div>
-        {props.item.quantity > 0 ? (
+        {props.item.quantity > 0 && loggedIn? (
           <Action>
             <Button id={props.item.id} onClick={onMinus}>
               -

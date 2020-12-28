@@ -1,12 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
-import itemList from "./../../data";
 
-const initialState = { data: itemList };
+let initialState = { data: [] };
 
 const cartSlice = createSlice({
   name: "updateCart",
   initialState,
   reducers: {
+    fetchData(state, action) {
+      initialState = {...action.payload};
+      state = {...action.payload};
+      // Does not work without this return statement. Why?
+      return state;
+    },
     increment(state, action) {
       const id = parseInt(action.payload);
       state.data.forEach((each) => {
@@ -31,5 +36,5 @@ const cartSlice = createSlice({
   },
 });
 
-export const { increment, decrement, reset } = cartSlice.actions;
+export const { fetchData, increment, decrement, reset } = cartSlice.actions;
 export default cartSlice.reducer;
