@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 const Div = styled.div`
   background-color: #f7c8ab;
@@ -14,8 +13,16 @@ const Div = styled.div`
   border-radius: 4px;
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  flex: 1 1;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+`;
+
 const Button = styled.button`
   padding: 10px;
+  margin: 4px 2px;
   background-color: #9947bc;
   color: #ffffff;
   border: none;
@@ -37,11 +44,10 @@ export default function CartSummary(props) {
               {numberOfItems > 1 ? " items" : " item"} | Rs. {totalPrice}
             </span>
           </div>
-          <div>
-            <Button onClick={onReset}>RESET</Button>
-            {" "}
-            <Link to='/order/:id'><Button onClick={onCheckOut}>CHECK OUT</Button></Link>
-          </div>
+          <ButtonContainer>
+            <Button onClick={onReset}>RESET</Button>{" "}
+            <Button onClick={onCheckOut}>CHECK OUT</Button>
+          </ButtonContainer>
         </Div>
       ) : null}
     </>

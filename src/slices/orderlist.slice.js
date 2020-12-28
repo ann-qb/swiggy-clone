@@ -8,6 +8,7 @@ const orderListSlice = createSlice({
   reducers: {
     addOrder(state, action) {
       const newOrder = {
+        // Is there a better way to set orderId?
         orderId: state.orderList.length,
         orderStatus: "Active",
         orderDetails: action.payload.cartItems,
@@ -23,7 +24,8 @@ const orderListSlice = createSlice({
     },
     removeOrder(state, action) {
       const id = parseInt(action.payload.id);
-      state = state.orderList.filter((each) => each.orderId !== id);
+      state.orderList = state.orderList.filter((each) => each.orderId !== id);
+      return state;
     },
     updateOrderStatus(state, action) {
       const id = parseInt(action.payload.id);

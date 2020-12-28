@@ -1,19 +1,19 @@
-import ItemsList from "./ItemsList";
+import ItemList from "./ItemList";
 import CartSummaryContainer from "./CartSummaryContainer/component";
-import styled from "styled-components";
 import OrderList from "./OrderList/component";
-
-const Div = styled.div`
-  margin: 0 auto;
-  max-width: 768px;
-`;
+import { useSelector } from "react-redux";
 
 export default function ProductList() {
+  const { loggedIn } = useSelector((state) => state.loginSlice);
   return (
-    <Div>
-      <ItemsList />
-      <CartSummaryContainer />
-      <OrderList />
-    </Div>
+    <>
+      <ItemList />
+      {loggedIn ? (
+        <>
+          <CartSummaryContainer />
+          <OrderList />
+        </>
+      ) : null}
+    </>
   );
 }

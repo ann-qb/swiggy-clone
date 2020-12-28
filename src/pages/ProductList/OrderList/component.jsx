@@ -15,7 +15,8 @@ const Div = styled.div`
 `;
 
 const OrderDiv = styled.div`
-  background-color: #fec8d8;
+  background-color: ${props => props.bkgcolor === "Success" ? "#83698f" : "#fec8d8"};
+  color: ${props => props.bkgcolor === "Success" ? "#ffffff" : "#000000"};
   padding: 10px;
   margin-bottom: 10px;
   &:last-child {
@@ -40,16 +41,12 @@ const Button = styled.button`
 
 export default function OrderList() {
   const { orderList } = useSelector((state) => state.orderListSlice);
-  // const orderList = [
-  //   { orderId: 1, orderStatus: "Processing" },
-  //   { orderId: 2, orderStatus: "Processing" },
-  // ];
   return (
     <>
       {orderList.length > 0 ? (
         <Div>
           {orderList.map((each) => (
-            <OrderDiv key={each.orderId}>
+            <OrderDiv key={each.orderId} bkgcolor={each.orderStatus}>
               <div>
                 <span>
                   Order #{each.orderId} |{" "}
@@ -59,7 +56,12 @@ export default function OrderList() {
                 </span>
               </div>
               <div>
-                <Link to="/order/:id">
+                <Link
+                  to={{
+                    pathname: `/order/${each.orderId}`,
+                    state: { order: each },
+                  }}>
+                  {/* Is it ok to put a button inside a Link? */}
                   <Button>VIEW ORDER</Button>
                 </Link>
               </div>
