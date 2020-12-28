@@ -1,35 +1,3 @@
-// import { reset } from "./../../features/cart/cartSlice";
-// import { connect } from "react-redux";
-// import CartSummary from "../CartSummary/component";
-
-// const mapStateToProps = (state) => {
-//   return {
-//     numberOfItems: state.reduce(
-//       (acc, each) => (each.quantity > 0 ? (acc += each.quantity) : acc),
-//       0
-//     ),
-//     totalPrice: state.reduce(
-//       (acc, each) =>
-//         each.quantity > 0 ? (acc += each.price * each.quantity) : acc,
-//       0
-//     ),
-//   };
-// };
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     onCheckOut: () => {
-//       dispatch(reset());
-//     },
-//   };
-// };
-
-// const CartSummaryContainer = connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(CartSummary);
-// export default CartSummaryContainer;
-
 import { reset } from "../../../slices/cart.slice";
 import { useSelector, useDispatch } from "react-redux";
 import CartSummary from "./CartSummary/component";
